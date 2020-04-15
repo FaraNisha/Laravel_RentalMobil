@@ -20,5 +20,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register', 'PetugasController@register');
 Route::post('login', 'PetugasController@login');
 Route::get('/', function() {
-  return Auth::user()->level;
-})->middleware('jwt.verify');
+  return Auth::user()->level;})->middleware('jwt.verify');
+
+Route::post('tambah_penyewa', 'PenyewaController@store')->middleware('jwt.verify');
+Route::put('edit_penyewa/{id}', 'PenyewaController@update')->middleware('jwt.verify');
+Route::delete('hapus_penyewa/{id}', 'PenyewaController@destroy')->middleware('jwt.verify');
+
+Route::post('tambah_mobil', 'MobilController@store')->middleware('jwt.verify');
+Route::put('edit_mobil/{id}', 'MobilController@update')->middleware('jwt.verify');
+Route::delete('hapus_mobil/{id}', 'MobilController@destroy')->middleware('jwt.verify');
+
+Route::post('tambah_jenis', 'Jenis_MobilController@store')->middleware('jwt.verify');
+Route::put('edit_jenis/{id}', 'Jenis_MobilController@update')->middleware('jwt.verify');
+Route::delete('hapus_jenis/{id}', 'Jenis_MobilController@destroy')->middleware('jwt.verify');
